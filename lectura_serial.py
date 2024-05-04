@@ -1,16 +1,29 @@
 import serial
 import time
+import pandas as pd
+import datetime as dt
 
-filename = "./brightness.txt"
 
-# serial port name , fastness in baudios
-serial = serial.Serial('COM15', 115200) 
-# wait for the serial connection
-time.sleep(2)
+filename = "./datatxt.txt"
+filename_csv = './datacsv.csv'
 
-with open(filename , "w") as file:
-    while True:
-        if serial.in_waiting:
-            line = serial.readline().decode('utf-8').rstrip()
+# serial port, fastness
+ser = serial.Serial(port="COM11", baudrate=115200, timeout=.1) 
+time.sleep(2) 
+
+while True:
+    with open(filename , "a+") as file:
+        # current_date = str(dt.datetime.now())
+        if ser.in_waiting > 0:
+            line = ser.readline().decode()
             print(line)
-            file.write(line + "\n")
+            if file:
+                df = pd.read_fwf(filename)
+                df.to_csv(filename_csv, index=False)
+            # if line:
+                # file.write(current_date + "'" + line)
+            file.write(line)
+            file.close()
+    
+    
+            
