@@ -1,22 +1,18 @@
-/*
- * This ESP32 code is created by esp32io.com
- *
- * This ESP32 code is released in the public domain
- *
- * For more detail (instruction and wiring diagram), visit https://esp32io.com/tutorials/esp32-light-sensor
- */
+#include "HardwareSerial.h"
 
 #define LIGHT_SENSOR_PIN 36 // ESP32 pin GIOP36 (ADC0)
+HardwareSerial USBserial(0);
 
 void setup() {
   // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+  USBserial.begin(115200);
 }
 
 void loop() {
   // reads the input on analog pin (value between 0 and 4095)
   int analogValue = analogRead(LIGHT_SENSOR_PIN);
 
+  /*
   Serial.print("Analog Value = ");
   Serial.print(analogValue);   // the raw analog reading
 
@@ -32,6 +28,9 @@ void loop() {
   } else {
     Serial.println(" => Very bright");
   }
+  */
+
+  USBserial.println(analogValue);
 
   delay(500);
 }
