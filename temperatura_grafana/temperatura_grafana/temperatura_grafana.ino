@@ -1,6 +1,6 @@
 #include "HardwareSerial.h"
 
-#define LIGHT_SENSOR_PIN 36 // ESP32 pin GIOP36 (ADC0)
+#define LIGHT_SENSOR_PIN 27 // ESP32 pin GIOP27 (ADC17)
 HardwareSerial USBserial(0);
 
 void setup() {
