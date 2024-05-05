@@ -1,8 +1,8 @@
 #include "HardwareSerial.h"
 #include "DHT.h"
 
-#define LIGHT_SENSOR_PIN 27 // ESP32 pin GIOP27 (ADC17)
-#define DHTPIN 4
+#define LIGHT_SENSOR_PIN 32 // ESP32 pin GIOP27 (ADC17)
+#define DHTPIN 33
 #define DHTTYPE DHT11
 
 HardwareSerial USBserial(0);
